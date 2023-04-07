@@ -1,0 +1,110 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <style>
+    table,th,tr,td{
+        border: 1px solid black
+    }
+</style>
+</head>
+<body>
+    
+      <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div>
+            <label for="mobile">Mobile:</label>
+            <input type="text" id="mobile" name="mobile">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <table>
+      <th>email</th>
+      <th>Phone_num</th>
+      <tr>
+        <td>{{email_obj}}</td>
+        <td>{{list}}</td>
+      </tr>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for email in email1 %}
+      <tr>
+        <td>{{ email.email}}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+    </table>
+    
+     
+      {{email}}
+     
+       
+
+
+  
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <style>
+    table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+  </style>
+</head>
+<body>
+    
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div>
+      <label for="mobile">Mobile:</label>
+      <input type="text" id="mobile" name="mobile">
+    </div>
+    <button type="submit">Submit</button>
+
+  </form>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for email in emails %}
+    <tr>
+      <td>{{ email.email }}</td>
+      <td>
+        {% for mobile in email.moblie_set.all %}
+        {{ mobile.moblie }},
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+ </table>
+  
+</body>
+</html>
+
